@@ -86,14 +86,18 @@ void testApp::setup() {
     treeModel.loadModel("tree3_2.dae", true);
     treeModel.setScale(treeScale.x,treeScale.y,treeScale.z);
     treeModel.setPosition(0,0,0);
-    //treeModel.setRotation(0, 90, 90, 1, 0);
+    ofQuaternion treeRot = ofQuaternion(0,0.5,0.5,PI);
+    startLoc = ofVec3f( 0,0,0);
     
     treeShape = new ofxBulletCustomShape();
     for(int i = 0; i < treeModel.getNumMeshes(); i++) {
         treeShape->addMesh(treeModel.getMesh(i), treeScale, true);
     }
     
-    treeShape->create( world.world, startLoc, startRot, 3.);
+    //TODO: put tree upright
+    
+    //treeShape->create( world.world, startLoc, treeRot, 0.);
+    treeShape->create( world.world, startLoc, 0.);
     treeShape->add();
     
 	
